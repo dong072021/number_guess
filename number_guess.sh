@@ -64,3 +64,8 @@ else
         $PSQL "UPDATE users SET games_played = $new_games_played WHERE username = '$username';"
     fi
 fi
+# Function to reset the game
+reset_game() {
+  echo "Resetting game..."
+  # Reset relevant game variables or state here
+}
