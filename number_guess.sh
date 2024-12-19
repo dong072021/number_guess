@@ -53,14 +53,14 @@ done
 # Update game stats in the database
 if [[ -z $user_info ]]; then
     # Insert new user
-    $PSQL "INSERT INTO users (username, games_played, best_game) VALUES ('$username', 1, $guess_count);"
+    $PSQL "INSERT INTO users (username, games_played, best_game) VALUES ('$username', 1, $guess_count);" > /dev/null 2>&1
 else
     # Update existing user
     new_games_played=$((games_played + 1))
     if [[ -z $best_game || $guess_count -lt $best_game ]]; then
         # Update best_game if this game was better
-        $PSQL "UPDATE users SET games_played = $new_games_played, best_game = $guess_count WHERE username = '$username';"
+        $PSQL "UPDATE users SET games_played = $new_games_played, best_game = $guess_count WHERE username = '$username';" > /dev/null 2>&1
     else
-        $PSQL "UPDATE users SET games_played = $new_games_played WHERE username = '$username';"
+        $PSQL "UPDATE users SET games_played = $new_games_played WHERE username = '$username';" > /dev/null 2>&1
     fi
 fi
